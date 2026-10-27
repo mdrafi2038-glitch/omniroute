@@ -136,7 +136,10 @@ export default function Sidebar({
       ...section,
       title: getSidebarLabel(section.titleKey, section.titleFallback),
       items: section.items
-        .map((item) => ({ ...item, label: t(item.i18nKey) }))
+        .map((item) => ({
+          ...item,
+          label: item.id === "chat" ? "Chat" : t(item.i18nKey),
+        }))
         .filter((item) => !hiddenSidebarSet.has(item.id)),
     }))
     .filter((section) => section.items.length > 0);
